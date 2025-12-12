@@ -1,11 +1,11 @@
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary";
   children: React.ReactNode;
 }
 
-const Button = ({ variant = "primary", children }: ButtonProps) => {
+const Button = ({ variant = "primary", children, ...props }: ButtonProps) => {
   const baseClasses =
-    "shadow-md text-base p-2 inline-block cursor-pointer rounded-sm border-2 border-solid font-medium transition-colors m-5";
+    "shadow-md text-base p-2 inline-block cursor-pointer rounded-sm border-2 border-solid font-medium transition-colors mx-5";
 
   const variants = {
     primary:
@@ -15,7 +15,7 @@ const Button = ({ variant = "primary", children }: ButtonProps) => {
   };
 
   return (
-    <button className={`${baseClasses} ${variants[variant]}`}>
+    <button className={`${baseClasses} ${variants[variant]}`} {...props}>
       {children}
     </button>
   );

@@ -20,18 +20,32 @@ const FallingDiceBackground = () => {
               animation: `fall ${duration}s linear ${delay}s infinite`,
             }}
           >
-            <Dice type={type} size={30 + Math.random() * 30} />
+            {/* Inner wrapper spins */}
+            <div
+              style={{
+                animation: `spin ${duration * 0.7}s linear infinite`,
+              }}
+            >
+              <Dice type={type} size={30 + Math.random() * 30} />
+            </div>
           </div>
         );
       })}
 
+
       <style>{`
-        @keyframes fall {
-          0% { transform: translateY(-50px); opacity: 0; }
-          10% { opacity: 1; }
-          100% { transform: translateY(110vh); opacity: 0; }
-        }
-      `}</style>
+  @keyframes fall {
+    0% { transform: translateY(-50px); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(110vh); opacity: 0; }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+`}</style>
+
     </div>
   );
 };
