@@ -124,7 +124,7 @@ const MonsterSelection = () => {
     };
 
     return (
-        <div id="monster-section" className="h-screen mx-5 flex flex-col justify-around">
+        <div id="monster-section" className="h-screen mx-5 flex flex-col justify-evenly">
             <div className="flex flex-col justify-center items-center">
                 <div className="-mb-30 -mr-10">
                     <div className="w-32 h-32 bg-primary [clip-path:polygon(50%_0%,100%_50%,50%_100%,0%_50%)]"></div>
