@@ -42,7 +42,7 @@ const MonsterSelection = () => {
         const term = event.target.value;
         setSearchTerm(term);
         const filtered = apiData.filter((item) =>
-            item.name.toLowerCase().includes(term.toLowerCase())
+            item.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredApiData(filtered);
     };
