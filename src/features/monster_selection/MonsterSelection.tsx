@@ -18,7 +18,7 @@ interface ApiResponse {
 }
 
 const MonsterSelection = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [apiData, setApiData] = useState<CreatureOverview[]>([]);
     const [filteredApiData, setFilteredApiData] = useState<CreatureOverview[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
