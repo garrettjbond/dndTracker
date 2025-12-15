@@ -42,7 +42,6 @@ const NavArrow = () => {
             behavior: "smooth",
         });
     };
-
     return (
         <button
             onClick={smoothNavigation}
