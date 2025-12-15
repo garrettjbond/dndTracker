@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../../components/Button";
 import { useEncounterStore } from "../../global/encounterStore";
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faDungeon, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const EncounterRoster = () => {
     const {
@@ -20,8 +20,8 @@ const EncounterRoster = () => {
     const activeCreatureId = sortedCreatures[activeTurn]?.id;
 
     return (
-        <div className="h-screen mx-5 flex flex-col justify-evenly">
-            <div className="flex flex-col justify-center items-center my-10">
+        <div id="encounter-section" className="h-screen mx-5 flex flex-col gap-5">
+            <div className="flex flex-col justify-center items-center mt-10">
                 <div className="-mb-30 -mr-10">
                     <div className="w-32 h-32 bg-primary [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)]"></div>
                     <div className="w-32 h-32 bg-gradient-to-b from-red-400 to-red-200 [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)] -mt-32 -ml-5"></div>
@@ -51,11 +51,16 @@ const EncounterRoster = () => {
 
             <div className="flex flex-col justify-start gap-10 items-center h-fit">
                 {creatures.length < 1 ?
-                    <div className="shadow-md rounded-md flex justify-center items-center bg-gradient-to-b from-red-500 to-red-200 text-xl text-white  font-semibold w-4/5 h-96">
+                    <div className="shadow-md rounded-md flex flex-col justify-evenly items-center bg-gradient-to-b from-red-500 to-red-200 text-xl text-white  font-semibold w-4/5 h-64">
                         <p>Roster is Empty</p>
+                        <FontAwesomeIcon
+                            icon={faDungeon}
+                            className="cursor-pointer hover:text-red-600 text-7xl text-white fa-beat-fade"
+                        />
+                        <p>All Monsters Secure</p>
                     </div>
                     :
-                    <div className="flex flex-col items-between gap-7">
+                    <div className="flex flex-col items-between gap-7 w-xs">
                         <div className="max-h-96 overflow-y-auto">
                             <table className="bg-white rounded-lg shadow-sm">
                                 <thead className="sticky top-0">

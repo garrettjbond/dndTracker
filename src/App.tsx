@@ -1,5 +1,6 @@
 import './App.css'
 import FallingDiceBackground from './components/FallingDiceBackground.tsx'
+import NavArrow from './components/NavArrow.tsx'
 import CharacterCreation from './features/character_creation/CharacterCreation.tsx'
 import CombatTips from './features/combat_tips/CombatTips.tsx'
 import EncounterRoster from './features/encounter_roster/EncounterRoster.tsx'
@@ -14,10 +15,11 @@ function App() {
         <FallingDiceBackground />
         <Header />
       </div>
-      <CombatTips/>
-      <MonsterSelection/>
-      <CharacterCreation/>
+      <CombatTips />
+      <MonsterSelection />
+      <CharacterCreation />
       <EncounterRoster />
+      <NavArrow />
       <Footer />
     </>
   )

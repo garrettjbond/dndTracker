@@ -3,6 +3,8 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { useEncounterStore } from "../../global/encounterStore";
 import type { CreatureStatBlock } from "../../global/encounterStore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 interface CreatureOverview {
     index: string;
@@ -16,6 +18,7 @@ interface ApiResponse {
 }
 
 const MonsterSelection = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [apiData, setApiData] = useState<CreatureOverview[]>([]);
     const [filteredApiData, setFilteredApiData] = useState<CreatureOverview[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -56,6 +59,11 @@ const MonsterSelection = () => {
     };
 
     const fetchSelectedCreatures = async (ids: string[]) => {
+        setIsLoading(true);
+
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
         if (!ids.length) return;
 
         try {
@@ -121,6 +129,9 @@ const MonsterSelection = () => {
         } catch (err) {
             console.error("Error fetching creatures:", err);
         }
+        // finally {
+        //     setIsLoading(false);
+        // }
     };
 
     return (
@@ -135,33 +146,42 @@ const MonsterSelection = () => {
                 <p className="pt-5">Search for almost any D&D 5E creature and add it to your encounter.</p>
             </div>
             <Input onChange={handleSearch} placeholder="Enter creature..." />
+
             <div className="flex flex-col justify-start gap-10 items-center h-fit">
-                <div className="overflow-auto h-64 w-4/5 bg-lightgrey">
-                    <table className="w-full bg-white rounded-lg shadow-sm">
-                        <thead className="sticky top-0">
-                            <tr className="bg-gray-50 border-b border-gray-200">
-                                <th className="px-4 py-4 text-center text-xs text-gray-700 uppercase">Creature</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200">
-                            {filteredApiData.map((item) => {
-                                const isActive = activeCreatureList.includes(item.index);
-                                return (
-                                    <tr
-                                        key={item.index}
-                                        onClick={() => addToActiveStyleList(item.index)}
-                                        className="cursor-pointer"
-                                    >
-                                        <td
-                                            className={`px-4 py-4 whitespace-nowrap text-sm text-gray-900 transition-colors ${isActive ? "bg-primaryB" : "bg-white"}`}
+                <div className="overflow-auto h-48 sm:h-64 w-4/5 bg-lightgrey">
+
+                    {isLoading ? (<div className="flex flex-col justify-center items-center h-full">
+                        <FontAwesomeIcon
+                            icon={faSpinner}
+                            className="text-7xl text-primary fa-spin"
+                        />
+                    </div>) :
+                        <table className="w-full bg-white rounded-lg shadow-sm">
+                            <thead className="sticky top-0">
+                                <tr className="bg-gray-50 border-b border-gray-200">
+                                    <th className="px-4 py-4 text-center text-xs text-gray-700 uppercase">Creature</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200">
+                                {filteredApiData.map((item) => {
+                                    const isActive = activeCreatureList.includes(item.index);
+                                    return (
+                                        <tr
+                                            key={item.index}
+                                            onClick={() => addToActiveStyleList(item.index)}
+                                            className="cursor-pointer"
                                         >
-                                            {item.name}
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                                            <td
+                                                className={`px-4 py-4 whitespace-nowrap text-sm text-gray-900 transition-colors ${isActive ? "bg-primaryB" : "bg-white"}`}
+                                            >
+                                                {item.name}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    }
                 </div>
                 <Button onClick={() => fetchSelectedCreatures(activeCreatureList)}>Add to Roster</Button>
             </div>

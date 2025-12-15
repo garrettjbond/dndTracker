@@ -67,18 +67,15 @@ const CharacterCreation = () => {
                 <p className="pt-5">Fill out the form below with your player's character info and add them to the encounter.</p>
             </div>
             <div className="flex flex-col justify-start gap-10 items-center h-fit">
-                <div className="rounded-2xl w-4/5 drop-shadow-md bg-lightgrey px-6 py-3 flex flex-col">
-                    <form className="flex flex-col items-center gap-5" onSubmit={addToRoster}>
-                        <div>
-                            <Input name="initiative" required type="number" placeholder="Enter initiative..." />
-                            <Input name="name" required type="text" placeholder="Enter name..." />
-                            <Input name="ac" required type="number" placeholder="Enter ac..." />
-                            <Input name="health" required type="number" placeholder="Enter health..." />
-                        </div>
-                        <Button type="submit">Add to Roster</Button>
-                    </form>
-                </div>
-
+                <form className="flex flex-col items-center gap-5" onSubmit={addToRoster}>
+                    <div className="rounded-2xl w-4/5 drop-shadow-md bg-lightgrey px-6 py-3 flex flex-col w-full">
+                        <Input name="initiative" required type="number" placeholder="Enter initiative..." />
+                        <Input name="name" required type="text" placeholder="Enter name..." />
+                        <Input name="ac" required type="number" placeholder="Enter ac..." />
+                        <Input name="health" required type="number" placeholder="Enter health..." />
+                    </div>
+                    <Button type="submit">Add to Roster</Button>
+                </form>
             </div>
         </div>
     );
