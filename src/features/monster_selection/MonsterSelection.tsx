@@ -60,7 +60,6 @@ const MonsterSelection = () => {
 
     const fetchSelectedCreatures = async (ids: string[]) => {
         setIsLoading(true);
-
         setTimeout(() => {
             setIsLoading(false);
         }, 1000);
