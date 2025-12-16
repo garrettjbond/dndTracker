@@ -10,9 +10,8 @@ const NavArrow = () => {
         "encounter-section",
     ];
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(-1);
 
-    // Update current index on scroll
     useEffect(() => {
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
@@ -30,7 +29,7 @@ const NavArrow = () => {
         };
 
         window.addEventListener("scroll", handleScroll);
-        handleScroll(); // initial check
+        handleScroll(); 
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
