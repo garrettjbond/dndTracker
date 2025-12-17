@@ -57,7 +57,7 @@ const CharacterCreation = () => {
 
     return (
         <div id="character-section" className="h-screen m-5 flex flex-col justify-evenly">
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center mt-5">
                 <div className="-mb-30 -mr-10">
                     <div className="w-32 h-32 bg-primary [clip-path:polygon(50%_0%,100%_38%,82%_100%,18%_100%,0%_38%)]"></div>
                     <div className="w-32 h-32 bg-gradient-to-b from-red-400 to-red-200 [clip-path:polygon(50%_0%,100%_38%,82%_100%,18%_100%,0%_38%)] -mt-32 -ml-5"></div>

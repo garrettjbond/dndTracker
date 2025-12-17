@@ -18,6 +18,7 @@ interface ApiResponse {
 }
 
 const MonsterSelection = () => {
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [apiData, setApiData] = useState<CreatureOverview[]>([]);
     const [filteredApiData, setFilteredApiData] = useState<CreatureOverview[]>([]);
@@ -59,11 +60,18 @@ const MonsterSelection = () => {
     };
 
     const fetchSelectedCreatures = async (ids: string[]) => {
+
+        if (!ids.length) {
+            setErrorMessage("Please select at least one creature before adding to the roster.");
+            return;
+        }
+
+        setErrorMessage(null);
+
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
         }, 1000);
-        if (!ids.length) return;
 
         try {
             const results = await Promise.all(
@@ -126,16 +134,16 @@ const MonsterSelection = () => {
             setActiveCreatureList([]);
             return mapped;
         } catch (err) {
-            console.error("Error fetching creatures:", err);
+            setErrorMessage("Something went wrong while fetching creatures.")
         }
-        // finally {
-        //     setIsLoading(false);
-        // }
+        finally {
+            setIsLoading(false)
+        }
     };
 
     return (
         <div id="monster-section" className="h-screen mx-5 flex flex-col justify-evenly">
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center mt-5">
                 <div className="-mb-30 -mr-10">
                     <div className="w-32 h-32 bg-primary [clip-path:polygon(50%_0%,100%_50%,50%_100%,0%_50%)]"></div>
                     <div className="w-32 h-32 bg-gradient-to-b from-red-400 to-red-200 [clip-path:polygon(50%_0%,100%_50%,50%_100%,0%_50%)] -mt-32 -ml-5"></div>
@@ -146,9 +154,8 @@ const MonsterSelection = () => {
             </div>
             <Input onChange={handleSearch} placeholder="Enter creature..." />
 
-            <div className="flex flex-col justify-start gap-10 items-center h-fit">
+            <div className="flex flex-col justify-start gap-5 items-center h-fit">
                 <div className="overflow-auto h-48 sm:h-64 w-4/5 bg-lightgrey">
-
                     {isLoading ? (<div className="flex flex-col justify-center items-center h-full">
                         <FontAwesomeIcon
                             icon={faSpinner}
@@ -182,6 +189,11 @@ const MonsterSelection = () => {
                         </table>
                     }
                 </div>
+                {errorMessage && (
+                    <p className="text-red-600 text-sm font-medium">
+                        {errorMessage}
+                    </p>
+                )}
                 <Button onClick={() => fetchSelectedCreatures(activeCreatureList)}>Add to Roster</Button>
             </div>
         </div>

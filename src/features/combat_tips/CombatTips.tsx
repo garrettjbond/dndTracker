@@ -2,8 +2,8 @@
 
 const CombatTips = () => {
     return (
-        <div id="combat-section" className="h-fit mx-5">
-            <div className="flex flex-col justify-center items-center mt-20">
+        <div id="combat-section" className="mx-5 h-fit flex flex-col">
+            <div className="flex flex-col justify-center items-center mt-10">
                 <div className="-mb-30 -mr-10">
                     <div className="w-32 h-32 bg-primary [clip-path:polygon(50%_0%,0%_100%,100%_100%)]"></div>
                     <div className="w-32 h-32 bg-gradient-to-b from-red-400 to-red-200 [clip-path:polygon(50%_0%,0%_100%,100%_100%)] -mt-32 -ml-5"></div>
