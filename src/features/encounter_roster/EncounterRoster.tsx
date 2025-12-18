@@ -16,7 +16,6 @@ const EncounterRoster = () => {
     } = useEncounterStore();
 
     const sortedCreatures = creatures.slice().sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
-
     const activeCreatureId = sortedCreatures[activeTurn]?.id;
 
     return (
