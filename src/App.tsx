@@ -1,4 +1,5 @@
 import './App.css'
+import DiceTexture from './components/DiceTexture.tsx'
 import FallingDiceBackground from './components/FallingDiceBackground.tsx'
 import NavArrow from './components/NavArrow.tsx'
 import CharacterCreation from './features/character_creation/CharacterCreation.tsx'
@@ -11,14 +12,17 @@ import MonsterSelection from './features/monster_selection/MonsterSelection.tsx'
 function App() {
   return (
     <>
-      <div className="relative w-full h-screen bg-gradient-to-b from-primary to-white">
+      <div id='landing-section' className="relative w-full h-screen bg-gradient-to-b from-primary to-white">
         <FallingDiceBackground />
         <Header />
       </div>
-      <CombatTips />
-      <MonsterSelection />
-      <CharacterCreation />
-      <EncounterRoster />
+      <div className="relative">
+        <DiceTexture />
+      </div>
+        <CombatTips />
+        <MonsterSelection />
+        <CharacterCreation />
+        <EncounterRoster />
       <NavArrow />
       <Footer />
     </>

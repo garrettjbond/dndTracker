@@ -7,9 +7,9 @@ const FallingDiceBackground = () => {
     <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
       {Array.from({ length: 20 }).map((_, i) => {
         const type = diceTypes[Math.floor(Math.random() * diceTypes.length)];
-        const left = Math.random() * 100; // % from left
-        const delay = Math.random() * 5; // seconds
-        const duration = 5 + Math.random() * 5; // seconds
+        const left = Math.random() * 100;
+        const delay = Math.random() * 5;
+        const duration = 5 + Math.random() * 5;
 
         return (
           <div
@@ -20,13 +20,12 @@ const FallingDiceBackground = () => {
               animation: `fall ${duration}s linear ${delay}s infinite`,
             }}
           >
-            {/* Inner wrapper spins */}
             <div
               style={{
-                animation: `spin ${duration * 0.7}s linear infinite`,
+                animation: `spin ${duration * 0.9}s linear infinite`,
               }}
             >
-              <Dice type={type} size={30 + Math.random() * 30} />
+              <Dice type={type} size={60 + Math.random() * 30} />
             </div>
           </div>
         );

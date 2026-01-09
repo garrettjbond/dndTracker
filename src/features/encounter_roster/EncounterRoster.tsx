@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../../components/Button";
 import { useEncounterStore } from "../../global/encounterStore";
 import { faDungeon, faTrash } from '@fortawesome/free-solid-svg-icons';
+import SectionTitle from "../../components/SectionTitle";
 
 const EncounterRoster = () => {
     const {
@@ -19,17 +20,8 @@ const EncounterRoster = () => {
     const activeCreatureId = sortedCreatures[activeTurn]?.id;
 
     return (
-        <div id="encounter-section" className="h-screen mx-5 flex flex-col gap-5">
-            <div className="flex flex-col justify-center items-center mt-10">
-                <div className="-mb-30 -mr-10">
-                    <div className="w-32 h-32 bg-primary [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)]"></div>
-                    <div className="w-32 h-32 bg-gradient-to-b from-red-400 to-red-200 [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)] -mt-32 -ml-5"></div>
-                </div>
-                <h1 className="font-['UnifrakturCook'] text-[6rem] text-black z-1">Encounter</h1>
-                <h2 className="font-['Splash'] text-[3rem] text-primary -mt-16 drop-shadow-lg z-2">Let's Go!</h2>
-                <p className="pt-5">Fill out the form below with your player's character info and add them to the encounter.</p>
-            </div>
-
+        <div id="encounter-section" className="h-screen mx-5 flex flex-col gap-5 sm:gap-15">
+            <SectionTitle title="Encounter" subtitle="Let's Go!" shape="d12">Take charge of the battle! Cycle through the turns and bring the fantasy to life!</SectionTitle>
             <div className="flex justify-center">
                 <Button onClick={() => {
                     document.getElementById("combat-section")?.scrollIntoView({
@@ -50,25 +42,25 @@ const EncounterRoster = () => {
 
             <div className="flex flex-col justify-start gap-10 items-center h-fit">
                 {creatures.length < 1 ?
-                    <div className="shadow-md rounded-md flex flex-col justify-evenly items-center bg-gradient-to-b from-red-500 to-red-200 text-xl text-white  font-semibold w-4/5 h-64">
+                    <div className="shadow-md rounded-md flex flex-col justify-evenly items-center bg-gradient-to-b from-red-500 to-red-200 text-xl text-white  font-semibold w-xs sm:w-xl lg:w-[50vw] h-[40vh]">
                         <p>Roster is Empty</p>
                         <FontAwesomeIcon
                             icon={faDungeon}
-                            className="cursor-pointer hover:text-red-600 text-7xl text-white fa-beat-fade"
+                            className="text-7xl text-white fa-beat-fade"
                         />
                         <p>All Monsters Secure</p>
                     </div>
                     :
-                    <div className="flex flex-col items-between gap-7 w-xs">
-                        <div className="max-h-96 overflow-y-auto">
-                            <table className="bg-white rounded-lg shadow-sm">
+                    <div className="flex flex-col items-center gap-7 w-full max-w-[50vw]">
+                        <div className="h-[33vh] overflow-y-auto w-full">
+                            <table className="w-full table-fixed bg-white rounded-lg shadow-sm">
                                 <thead className="sticky top-0">
                                     <tr className="bg-gray-50 border-b border-gray-200">
-                                        <th className="px-3 py-4 text-left text-xs text-gray-700 uppercase">Init</th>
+                                        <th className="w-16 px-3 py-4 text-left text-xs text-gray-700 uppercase">Init</th>
                                         <th className="px-3 py-4 text-left text-xs text-gray-700 uppercase">Name</th>
-                                        <th className="px-3 py-4 text-left text-xs text-gray-700 uppercase">AC</th>
-                                        <th className="px-3 py-4 text-left text-xs text-gray-700 uppercase">Health</th>
-                                        <th className="px-3 py-4 text-left text-xs text-gray-700 uppercase"></th>
+                                        <th className="w-16 px-3 py-4 text-left text-xs text-gray-700 uppercase">AC</th>
+                                        <th className="w-16 py-4 text-left text-xs text-gray-700 uppercase">Health</th>
+                                        <th className="w-12 px-3 py-4 text-left text-xs text-gray-700 uppercase"></th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
@@ -83,14 +75,12 @@ const EncounterRoster = () => {
                                                         onChange={(e) =>
                                                             updateCreature(item.id, 'initiative', Number(e.target.value))
                                                         }
-                                                        className="w-full outline-none"
+                                                        className="w-full text-center outline-none"
                                                     />
                                                 </td>
-
                                                 <td className="py-4 px-3 whitespace-nowrap text-left text-sm text-gray-900">
                                                     {item.name}
                                                 </td>
-
                                                 <td className="py-4 px-3 whitespace-nowrap text-sm text-gray-900">
                                                     <input
                                                         type="number"
@@ -98,10 +88,9 @@ const EncounterRoster = () => {
                                                         onChange={(e) =>
                                                             updateArmorClass(item.id, Number(e.target.value))
                                                         }
-                                                        className="w-full outline-none"
+                                                        className="w-16 md:w-20 text-center outline-none"
                                                     />
                                                 </td>
-
                                                 <td className="py-4 px-3 whitespace-nowrap text-sm text-gray-900">
                                                     <input
                                                         type="number"
@@ -109,10 +98,9 @@ const EncounterRoster = () => {
                                                         onChange={(e) =>
                                                             updateCreature(item.id, 'hit_points', Number(e.target.value))
                                                         }
-                                                        className="w-full outline-none"
+                                                        className="w-16 md:w-20 text-center outline-none"
                                                     />
                                                 </td>
-
                                                 <td className="py-4 px-3 whitespace-nowrap text-sm text-gray-900">
                                                     <FontAwesomeIcon
                                                         onClick={() => removeCreature(item.id)}
@@ -125,10 +113,10 @@ const EncounterRoster = () => {
                                     })}
                                 </tbody>
                             </table>
-
                         </div>
-                        <div className="flex justify-center gap-15">
-                            <div className="flex">
+
+                        <div className="flex justify-center gap-6 w-full">
+                            <div className="flex gap-2">
                                 <Button onClick={previousTurn} variant="primary">Previous</Button>
                                 <Button onClick={nextTurn} variant="primary">Next</Button>
                             </div>

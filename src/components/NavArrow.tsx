@@ -3,55 +3,64 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 
 const NavArrow = () => {
-    const navigationLinks: string[] = [
-        "combat-section",
-        "monster-section",
-        "character-section",
-        "encounter-section",
-    ];
+  const navigationLinks: string[] = [
+    "landing-section",
+    "combat-section",
+    "monster-section",
+    "character-section",
+    "encounter-section",
+  ];
 
-    const [currentIndex, setCurrentIndex] = useState(-1);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-            const offset = window.innerHeight / 2;
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
 
-            const idx = navigationLinks.findIndex((id) => {
-                const el = document.getElementById(id);
-                if (!el) return false;
-                const top = el.offsetTop;
-                const height = el.offsetHeight;
-                return scrollPosition + offset >= top && scrollPosition + offset < top + height;
-            });
+      let closestIndex = 0;
+      let minDistance = Infinity;
 
-            if (idx !== -1) setCurrentIndex(idx);
-        };
+      navigationLinks.forEach((id, index) => {
+        const el = document.getElementById(id);
+        if (!el) return;
 
-        window.addEventListener("scroll", handleScroll);
-        handleScroll(); 
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        const top = el.offsetTop;
+        const distance = Math.abs(top - scrollPosition);
 
-    const smoothNavigation = () => {
-        const nextIndex =
-            currentIndex === navigationLinks.length - 1 ? 0 : currentIndex + 1;
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
 
-        document.getElementById(navigationLinks[nextIndex])?.scrollIntoView({
-            behavior: "smooth",
-        });
+      setCurrentIndex(closestIndex);
     };
-    return (
-        <button
-            onClick={smoothNavigation}
-            className="fixed bottom-4 right-4 z-50 rounded-full animate-bounce bg-white p-3 shadow-md"
-        >
-            <FontAwesomeIcon
-                icon={currentIndex === navigationLinks.length - 1 ? faAnglesUp : faAnglesDown}
-                className="text-3xl text-primary"
-            />
-        </button>
-    );
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const smoothNavigation = () => {
+    const nextIndex =
+      currentIndex === navigationLinks.length - 1 ? 0 : currentIndex + 1;
+
+    document.getElementById(navigationLinks[nextIndex])?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <button
+      onClick={smoothNavigation}
+      className="cursor-pointer fixed bottom-4 right-4 z-50 rounded-full animate-bounce bg-white p-3 shadow-md"
+    >
+      <FontAwesomeIcon
+        icon={currentIndex === navigationLinks.length - 1 ? faAnglesUp : faAnglesDown}
+        className="text-3xl text-primary"
+      />
+    </button>
+  );
 };
 
 export default NavArrow;

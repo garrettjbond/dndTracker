@@ -5,6 +5,7 @@ import { useEncounterStore } from "../../global/encounterStore";
 import type { CreatureStatBlock } from "../../global/encounterStore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import SectionTitle from "../../components/SectionTitle";
 
 interface CreatureOverview {
     index: string;
@@ -124,7 +125,7 @@ const MonsterSelection = () => {
                 id: monster.index + "-" + crypto.randomUUID(),
                 name: monster.name ?? "Unknown Monster",
                 dexterity: monster.dexterity ?? monsterTemplate.dexterity,
-                initiative: monster.dexterity ?? monsterTemplate.initiative,
+                initiative: (Math.floor(Math.random() * 20) + 1) + Math.floor((monster.dexterity - 10) / 2),
                 armor_class: monster.armor_class ?? monsterTemplate.armor_class,
                 hit_points: monster.hit_points ?? monsterTemplate.hit_points,
                 index: monster.index
@@ -143,19 +144,11 @@ const MonsterSelection = () => {
 
     return (
         <div id="monster-section" className="h-screen mx-5 flex flex-col justify-evenly">
-            <div className="flex flex-col justify-center items-center mt-5">
-                <div className="-mb-30 -mr-10">
-                    <div className="w-32 h-32 bg-primary [clip-path:polygon(50%_0%,100%_50%,50%_100%,0%_50%)]"></div>
-                    <div className="w-32 h-32 bg-gradient-to-b from-red-400 to-red-200 [clip-path:polygon(50%_0%,100%_50%,50%_100%,0%_50%)] -mt-32 -ml-5"></div>
-                </div>
-                <h1 className="font-['UnifrakturCook'] text-[6rem] text-black z-1">Monster</h1>
-                <h2 className="font-['Splash'] text-[3rem] text-primary -mt-16 drop-shadow-lg z-2">Selection</h2>
-                <p className="pt-5">Search for almost any D&D 5E creature and add it to your encounter.</p>
-            </div>
+            <SectionTitle title="Monster" subtitle="Selection" shape="d8">Search for almost any D&D 5E creature and add it to your encounter.</SectionTitle>
             <Input onChange={handleSearch} placeholder="Enter creature..." />
 
-            <div className="flex flex-col justify-start gap-5 items-center h-fit">
-                <div className="overflow-auto h-48 sm:h-64 w-4/5 bg-lightgrey">
+            <div className="flex flex-col justify-start gap-7 md:gap-10 items-center h-fit">
+                <div className="overflow-auto h-[33vh] w-xs sm:w-xl lg:w-[40vw] scrollbar-gutter-stable bg-white">
                     {isLoading ? (<div className="flex flex-col justify-center items-center h-full">
                         <FontAwesomeIcon
                             icon={faSpinner}
@@ -164,8 +157,8 @@ const MonsterSelection = () => {
                     </div>) :
                         <table className="w-full bg-white rounded-lg shadow-sm">
                             <thead className="sticky top-0">
-                                <tr className="bg-gray-50 border-b border-gray-200">
-                                    <th className="px-4 py-4 text-center text-xs text-gray-700 uppercase">Creature</th>
+                                <tr className="bg-primary">
+                                    <th className="px-4 py-4 text-white text-center text-xs sm:text-sm text-gray-700 uppercase -mt-5">Creature</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200">

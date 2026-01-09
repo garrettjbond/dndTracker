@@ -5,7 +5,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = ({ variant = "primary", children, ...props }: ButtonProps) => {
   const baseClasses =
-    "shadow-md text-base p-2 inline-block cursor-pointer rounded-sm border-2 border-solid font-medium transition-colors mx-5";
+    "shadow-md text-base p-2 inline-block cursor-pointer rounded-md border-2 border-solid font-medium transition-colors mx-5";
 
   const variants = {
     primary:

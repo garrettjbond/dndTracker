@@ -4,11 +4,14 @@ export interface DiceProps {
   size?: number; // in px
 }
 
-const Dice = ({ type, size = 40 }: DiceProps) => {
+
+
+const Dice = ({ type, size = 80 }: DiceProps) => {
+
   let svg;
-  switch(type) {
+  switch (type) {
     case 'd4':
-      svg = <polygon points="20,0 40,40 0,40" fill="black" />;
+      svg = <polygon points="20,0 40,34.64 0,34.64" fill="black" />;
       break;
     case 'd6':
       svg = <rect width={size} height={size} fill="black" />;
