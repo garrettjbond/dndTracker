@@ -42,7 +42,7 @@ const EncounterRoster = () => {
 
             <div className="flex flex-col justify-start gap-10 items-center h-fit">
                 {creatures.length < 1 ?
-                    <div className="shadow-md rounded-md flex flex-col justify-evenly items-center bg-gradient-to-b from-red-500 to-red-200 text-xl text-white  font-semibold w-xs sm:w-xl lg:w-[50vw] h-[40vh]">
+                    <div className="shadow-md rounded-md flex flex-col justify-evenly items-center bg-gradient-to-b from-red-500 to-red-200 text-xl text-white  font-semibold w-xs sm:w-xl lg:w-[45vw] h-[40vh]">
                         <p>Roster is Empty</p>
                         <FontAwesomeIcon
                             icon={faDungeon}
@@ -51,15 +51,15 @@ const EncounterRoster = () => {
                         <p>All Monsters Secure</p>
                     </div>
                     :
-                    <div className="flex flex-col items-center gap-7 w-full max-w-[50vw]">
+                    <div className="flex flex-col items-center gap-7 w-xs sm:w-xl lg:w-[45vw] h-[40vh]">
                         <div className="h-[33vh] overflow-y-auto w-full">
                             <table className="w-full table-fixed bg-white rounded-lg shadow-sm">
                                 <thead className="sticky top-0">
                                     <tr className="bg-gray-50 border-b border-gray-200">
                                         <th className="w-16 px-3 py-4 text-left text-xs text-gray-700 uppercase">Init</th>
                                         <th className="px-3 py-4 text-left text-xs text-gray-700 uppercase">Name</th>
-                                        <th className="w-16 px-3 py-4 text-left text-xs text-gray-700 uppercase">AC</th>
-                                        <th className="w-16 py-4 text-left text-xs text-gray-700 uppercase">Health</th>
+                                        <th className="px-3 py-4 text-center text-xs text-gray-700 uppercase">AC</th>
+                                        <th className="py-4 text-center text-xs text-gray-700 uppercase">Health</th>
                                         <th className="w-12 px-3 py-4 text-left text-xs text-gray-700 uppercase"></th>
                                     </tr>
                                 </thead>
@@ -78,7 +78,7 @@ const EncounterRoster = () => {
                                                         className="w-full text-center outline-none"
                                                     />
                                                 </td>
-                                                <td className="py-4 px-3 whitespace-nowrap text-left text-sm text-gray-900">
+                                                <td className="truncate py-4 px-3 whitespace-nowrap text-left text-sm text-gray-900">
                                                     {item.name}
                                                 </td>
                                                 <td className="py-4 px-3 whitespace-nowrap text-sm text-gray-900">
@@ -88,7 +88,7 @@ const EncounterRoster = () => {
                                                         onChange={(e) =>
                                                             updateArmorClass(item.id, Number(e.target.value))
                                                         }
-                                                        className="w-16 md:w-20 text-center outline-none"
+                                                        className="w-full text-center outline-none"
                                                     />
                                                 </td>
                                                 <td className="py-4 px-3 whitespace-nowrap text-sm text-gray-900">
@@ -98,7 +98,7 @@ const EncounterRoster = () => {
                                                         onChange={(e) =>
                                                             updateCreature(item.id, 'hit_points', Number(e.target.value))
                                                         }
-                                                        className="w-16 md:w-20 text-center outline-none"
+                                                        className="w-full text-center outline-none"
                                                     />
                                                 </td>
                                                 <td className="py-4 px-3 whitespace-nowrap text-sm text-gray-900">

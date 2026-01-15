@@ -27,7 +27,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ title = "title", subtitle =
             </div>
             < h1 className="font-['UnifrakturCook'] text-[6rem] md:text-[8rem] text-black z-1" > {title} </h1>
             < h2 className="font-['Splash'] text-[3rem] md:text-[4rem] text-primary -mt-16 md:-mt-20 drop-shadow-lg z-2" > {subtitle} </h2>
-            < p className="pt-5" > {children}</p>
+            < p className="pt-2 md:pt-5" > {children}</p>
         </div>
     );
 };
