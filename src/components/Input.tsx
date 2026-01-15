@@ -11,7 +11,7 @@ const Input: React.FC<InputProps> = ({ type = "text", placeholder = "", extraSty
     <input
       type={type}
       placeholder={placeholder}
-      className={`min-w-72 sm:min-w-96 font-normal bg-lightgrey border-b-2 border-primaryB h-14 pl-5 focus:border-black outline-none transition-colors duration-200 my-2 m-auto ${extraStyles}`}
+      className={`min-w-72 sm:min-w-96 font-normal bg-lightgrey border-b-2 border-primaryB h-14 pl-5 focus:border-black outline-none transition-colors duration-200 my-1 m-auto ${extraStyles}`}
       {...props}
     />
   );
