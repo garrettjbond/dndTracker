@@ -20,7 +20,7 @@ const EncounterRoster = () => {
     const activeCreatureId = sortedCreatures[activeTurn]?.id;
 
     return (
-        <div id="encounter-section" className="h-screen mx-5 flex flex-col gap-5 sm:gap-15">
+        <div id="encounter-section" className="h-screen mx-5 flex flex-col justify-start pt-10 gap-10 sm:gap-15">
             <SectionTitle title="Encounter" subtitle="Let's Go!" shape="d12">Take charge of the battle! Cycle through the turns and bring the fantasy to life!</SectionTitle>
             <div className="flex justify-center">
                 <Button onClick={() => {

@@ -143,11 +143,11 @@ const MonsterSelection = () => {
     };
 
     return (
-        <div id="monster-section" className="h-screen mx-5 flex flex-col justify-evenly">
+        <div id="monster-section" className="h-screen mx-5 flex flex-col justify-start pt-10 gap-12">
             <SectionTitle title="Monster" subtitle="Selection" shape="d8">Search for almost any D&D 5E creature and add it to your encounter.</SectionTitle>
             <Input onChange={handleSearch} placeholder="Enter creature..." />
 
-            <div className="flex flex-col justify-start gap-7 md:gap-10 items-center h-fit -mt-10 sm:mt-0">
+            <div className="flex flex-col justify-start gap-7 md:gap-10 items-center h-fit sm:mt-0">
                 <div className="overflow-auto h-[33vh] w-xs sm:w-xl lg:w-[40vw] scrollbar-gutter-stable bg-white">
                     {isLoading ? (<div className="flex flex-col justify-center items-center h-full">
                         <FontAwesomeIcon

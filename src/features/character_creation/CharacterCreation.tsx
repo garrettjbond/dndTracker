@@ -57,10 +57,10 @@ const CharacterCreation = () => {
     }
 
     return (
-        <div id="character-section" className="h-screen m-5 flex flex-col justify-evenly">
+        <div id="character-section" className="h-screen m-5 flex flex-col justify-start pt-10 gap-25">
             <SectionTitle title="Character" subtitle="Creation" shape="d10">Fill out the form below with your player's character info and add them to the encounter.</SectionTitle>
-            <div className="flex flex-col justify-start gap-10 items-center h-fit -mt-10 sm:mt-0">
-                <form className="flex flex-col items-center gap-5 md:gap-10" onSubmit={addToRoster}>
+            <div className="flex flex-col justify-start gap-10 items-center h-fit">
+                <form className="flex flex-col items-center gap-15 md:gap-20" onSubmit={addToRoster}>
                     <div className="rounded-2xl w-4/5 drop-shadow-md bg-lightgrey px-5 pt-3 pb-5 flex flex-col w-full gap-2">
                         <Input name="initiative" required type="number" placeholder="Enter initiative..." />
                         <Input name="name" required type="text" placeholder="Enter name..." />
