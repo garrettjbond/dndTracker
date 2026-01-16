@@ -3,6 +3,7 @@ import Button from "../../components/Button";
 import { useEncounterStore } from "../../global/encounterStore";
 import { faDungeon, faTrash } from '@fortawesome/free-solid-svg-icons';
 import SectionTitle from "../../components/SectionTitle";
+import { useState } from "react";
 
 const EncounterRoster = () => {
     const {
@@ -15,7 +16,7 @@ const EncounterRoster = () => {
         updateCreature,
         updateArmorClass
     } = useEncounterStore();
-
+    const [openTooltip, setOpenTooltip] = useState<string | null>(null);
     const sortedCreatures = creatures.slice().sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
     const activeCreatureId = sortedCreatures[activeTurn]?.id;
 
@@ -78,8 +79,21 @@ const EncounterRoster = () => {
                                                         className="w-full text-center outline-none"
                                                     />
                                                 </td>
-                                                <td className="truncate py-4 px-3 whitespace-nowrap text-left text-sm text-gray-900">
-                                                    {item.name}
+                                                <td className="py-4 px-3 text-sm text-gray-900">
+                                                    <div className="relative">
+                                                        <button
+                                                            onClick={() => setOpenTooltip(openTooltip === item.id ? null : item.id)}
+                                                            className="w-full truncate text-left max-w-[150px]"
+                                                        >
+                                                            {item.name}
+                                                        </button>
+                                                        {openTooltip === item.id && (
+                                                            <div className="absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2
+                            rounded bg-gray-900 px-2 py-1 text-xs text-white whitespace-nowrap shadow-lg">
+                                                                {item.name}
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 </td>
                                                 <td className="py-4 px-3 whitespace-nowrap text-sm text-gray-900">
                                                     <input

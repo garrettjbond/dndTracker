@@ -148,7 +148,7 @@ const MonsterSelection = () => {
             <Input onChange={handleSearch} placeholder="Enter creature..." />
 
             <div className="flex flex-col justify-start gap-7 md:gap-10 items-center h-fit sm:mt-0">
-                <div className="overflow-auto h-[33vh] w-xs sm:w-xl lg:w-[40vw] scrollbar-gutter-stable bg-white">
+                <div className="overflow-auto h-[25vh] sm-[33vh] w-xs sm:w-xl lg:w-[40vw] scrollbar-gutter-stable bg-white">
                     {isLoading ? (<div className="flex flex-col justify-center items-center h-full">
                         <FontAwesomeIcon
                             icon={faSpinner}
